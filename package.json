@@ -1,0 +1,64 @@
+{
+  "name": "@cyoutest/william_base_module-native",
+  "version": "1.0.0",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "yarn run clean && yarn run tsc",
+    "upload": "yarn run build && npm publish --registry http://192.168.11.6:4873 --access restricted",
+    "clean": "rimraf build",
+    "lint": "tslint src/**/*.ts",
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "start:ios": "npm run build && concurrently -r 'npm run watch' 'react-native run-ios'",
+    "start:android": "npm run build && concurrently -r 'npm run watch' 'react-native run-android'",
+    "tsc": "tsc",
+    "test": "jest --coverage",
+    "watch": "npm run build -- -w"
+  },
+  "dependencies": {
+    "antd-mobile": "^2.1.8",
+    "react": "16.2.0",
+    "react-native": "0.53.0",
+    "react-native-calendars": "^1.19.3",
+    "react-native-modal": "^6.1.0",
+    "react-native-picker-select": "3.0.1",
+    "react-native-push-notification": "^3.0.2",
+    "react-native-svg": "^6.3.1",
+    "react-native-swipeout": "^2.3.3",
+    "react-navigation": "^2.0.4",
+    "react-redux": "^5.0.7",
+    "realm": "^2.8.0",
+    "redux": "^4.0.0",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
+    "short-uuid": "^3.0.0",
+    "svgs": "^3.2.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^22.1.1",
+    "@types/react": "^16.0.36",
+    "@types/react-native": "^0.52.8",
+    "babel-jest": "22.2.0",
+    "babel-plugin-import": "^1.7.0",
+    "babel-preset-react-native": "4.0.0",
+    "concurrently": "^3.5.1",
+    "jest": "22.2.1",
+    "react-test-renderer": "16.2.0",
+    "rimraf": "^2.6.2",
+    "tslint": "^5.9.1",
+    "typescript": "^2.7.1"
+  },
+  "jest": {
+    "preset": "react-native",
+    "testRegex": "build/.+\\.(test|spec).js$",
+    "coverageDirectory": "coverage",
+    "coverageReporters": [
+      "text-summary",
+      "html"
+    ],
+    "collectCoverageFrom": [
+      "build/**/*.js",
+      "!build/**/*.spec.js",
+      "!build/**/*.index.js"
+    ]
+  }
+}
